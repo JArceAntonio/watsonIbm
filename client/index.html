@@ -1,0 +1,203 @@
+<!-- 
+* Copyright 2016 Carlos Eduardo Alfaro Orellana
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>IBM WATSON</title>
+	
+     <!-- Normalize CSS -->
+	<link rel="stylesheet" href="css/normalize.css">
+    
+     <!-- Materialize CSS -->
+	<link rel="stylesheet" href="css/materialize.min.css">
+    
+     <!-- Material Design Iconic Font CSS -->
+	<link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+    
+    <!-- Malihu jQuery custom content scroller CSS -->
+	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    
+    <!-- Sweet Alert CSS -->
+    <link rel="stylesheet" href="css/sweetalert.css">
+    
+    <!-- MaterialDark CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+</head>
+<body>
+        <nav>
+            <div class="nav-wrapper">
+                <div class="container">
+                    <a href="#" class="brand-logo">Discovery Watson</a>
+                </div>
+            </div>
+        </nav>
+    <div class="container">
+        <div class="row">
+                <h3>IBM Watson Discovery</h3>
+        </div>
+    
+        <div class="row">
+            <div class="col s6">
+                <!--Formulario de envio de archivos-->
+                <div class="row">
+                    <form enctype="multipart/form-data" id="form">
+                        <div class="row">
+                            <div class="file-field input-field col s12">
+                                <div class="btn">
+                                    <span>File</span>
+                                    <input name="document" type="file" class="validate" id="document" required>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="waves-effect waves-light btn-large"><i class="zmdi zmdi-cloud left"></i>Subir Documento</button>
+                        </div>
+                    </form>
+                </div>
+                <!--Consulta por texto en lenguaje natural-->
+                <div class="row">
+                    <div class="input-field col s7">
+                        <input id="texto" type="text" class="validate">
+                        <label for="texto">Consulta</label>
+                    </div>
+                    <div class="col s5">
+                        <button class="waves-effect waves-light btn" id="consultar">Consultar</button>
+                    </div>
+                </div>
+                <!--Consulta por enfermedades-->
+                <div class="row">
+                    <h3>Consulta de Enfermedades</h3>
+                    <div class="col s4">
+                        <select id="enfermedad">
+                            <option value="diabetes">Diabetes</option>
+                            <option value="cáncer">Cancer</option>
+                            <option value="hipertensión">Hipertension</option>
+                        </select>
+                    </div>
+                    <div class="col s8">
+                        <div class="row">
+                            <div class="col s6">
+                                <button id="addEnfermedad" class="waves-effect waves-light btn">Agregar</button>
+                            </div>
+                            <div class="col s6">
+                                <button id="consultarLista" class="waves-effect waves-light btn">Consultar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Consulta de enfermedades por genero-->
+                <div class="row">
+                    <h3>Consulta de Enfermedades por Genero</h3>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col s6">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <select id="genero">
+                                            <option value="mujeres">Mujeres</option>
+                                            <option value="hombres">Hombres</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col s6">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <select id="enfermedad2">
+                                            <option value="diabetes">Diabetes</option>
+                                            <option value="cáncer">Cancer</option>
+                                            <option value="hipertensión">Hipertension</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <!--<button id="addEnfermedad2" class="waves-effect waves-light btn"><i class="zmdi zmdi-cloud left"></i>Add</button>-->
+                        <button id="consultar2" class="waves-effect waves-light btn">Consultar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col s6" id="results">
+                <div class="row">
+                    <div class="container col s12" id="campo">
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col s12" id="json2">
+
+                    </div>
+                </div>
+                <div class="row" id="json-container">
+                    <div class="col s12" id="json">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <ul id="enfermedades" class="collection">
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div id="estadistica" class="row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">Discovery Watson</h5>
+                  <p class="grey-text text-lighten-4">Ing. de Software</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Integrantes</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Colque Guzman Jorge Luis</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Sandoval Garcia David Jhonatan</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Arce Fuertes Jose Antonio</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Puma Lima Pablo Josue</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Acosta Choclo Mingyar</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright">
+              <div class="container">
+              © 2014 Copyright Text
+              <a class="grey-text text-lighten-4 right" href="#!">Ing. Software</a>
+              </div>
+            </div>
+          </footer>
+              
+    <script src="js/sweetalert.min.js"></script>
+    
+    <!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script     src="js/jquery-2.2.0.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <!-- Materialize JS -->
+	<script src="js/materialize.min.js"></script>
+    
+    <!-- Malihu jQuery custom content scroller JS -->
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
+    <script src="js/mainWatson.js"></script>
+    
+</body>
+</html>
